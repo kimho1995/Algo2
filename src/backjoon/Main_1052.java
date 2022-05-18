@@ -27,7 +27,7 @@ public class Main_1052 {
             list[1]++;
             for (int i = 1; i < size; i++) {
                 if (K == bottle) break;
-                if (list[i] == 1) {
+                if (list[i] == 1)  {
                     answer += (Math.pow(2, i));
                 } else {
                     cnt++;

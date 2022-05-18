@@ -15,9 +15,7 @@ public class Main_9663 {
         total = 0;
         v = new boolean[N+1];
         v1 = new boolean[2*N+1];
-        v2 = new boolean[2*
-
-                N+1];
+        v2 = new boolean[2*N+1];
         calc(1);
         System.out.println(total);
 
