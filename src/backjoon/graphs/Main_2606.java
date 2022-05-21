@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Main_2066 {
+public class Main_2606 {
 
     static int V, E, answer;
     static boolean[] v;
