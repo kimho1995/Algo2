@@ -67,7 +67,7 @@ public class Main_9372 {
                 if(v[next.idx]) continue;
                 v[next.idx] = true;
                 pq.offer(new Node(next.idx, next.weight));
-                answer++;
+                answer += next.weight;
             }
         }
     }
