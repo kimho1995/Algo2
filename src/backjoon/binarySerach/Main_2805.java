@@ -20,8 +20,6 @@ public class Main_2805 {
         st = new StringTokenizer(br.readLine());
         for(int i=0; i<N; i++) {
             arr[i] = Long.parseLong(st.nextToken());
-        }
-        for(int i=0; i<N; i++) {
             max = Math.max(max, arr[i]);
         }
 
@@ -37,6 +35,7 @@ public class Main_2805 {
             long mid = (lo+hi)/2;
             long sum = 0;
             for(long n : arr) {
+                if(sum > M) break;
                 if(n-mid>0) {
                     sum += n-mid;
                 }

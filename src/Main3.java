@@ -1,30 +1,67 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main3 {
-    static int N;
-    static int[] dp;
-    static int[] money = {5,2,1};
+    static int N, M;
+    static int[][] arr;
+    static int[][] map;
+    static long answer;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        dp = new int[N+1];
-        System.out.println(start());
-    }
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        arr = new int[N+1][M+1];
+        map = new int[N+1][M+1];
+        StringBuilder sb = new StringBuilder();
+        for(int i=1; i<=N; i++) {
+            sb.append(br.readLine());
+            for(int j=1; j<=M; j++) {
+                arr[i][j] = sb.charAt(j-1)-'0';
+            }
+            sb.setLength(0);
+        }
+        setting();
 
-    static int start() {
-        if(N==0) return 0;
-        if(N==1||N==2||N==5||N==7) return 1;
-        if(N==3||N==4||N==6) return 2;
-        dp[1]=dp[2]=dp[5]=dp[7]=1;
-        dp[3]=dp[4]=dp[6]=2;
-        for(int i=8; i<=N; i++) {
-            dp[i] = dp[i-7]+1;
-            for(int m : money) {
-                dp[i] = Math.min(dp[i], dp[i-m]+1);
+        for(int i=1; i<N; i++) {
+            for(int j=1; j<=M; j++) {
+                start(i, j);
             }
         }
-        return dp[N];
+
+        System.out.println(answer);
     }
+
+    static void setting() {
+        for(int i=1; i<=N; i++) {
+            for(int j=1; j<=M; j++) {
+                map[i][j] = map[i][j-1]+arr[i][j];
+            }
+        }
+
+        for(int i=1; i<N; i++) {
+            for(int j=1; j<=M; j++) {
+                map[i+1][j] += map[i][j];
+            }
+        }
+    }
+
+    static void start(int r, int c) {
+        if(r==N && c==M) return;
+        if(c==M) {
+            
+            return;
+        }
+        if(r==N) {
+
+            return;
+        }
+        answer = Math.max(answer, map[r][c] * (map[r][M] - map[r][c]) * (map[N][M]-map[r][M]));
+        answer = Math.max(answer, map[r][c] * (map[N][c] - map[r][c]) * (map[N][M]-map[N][c]));
+        return;
+    }
+
 }
